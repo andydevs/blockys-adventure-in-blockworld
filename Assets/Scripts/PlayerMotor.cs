@@ -77,8 +77,16 @@ public class PlayerMotor : MonoBehaviour
         return IsLeftGrounded() || IsRightGrounded();
     }
 
-    public void Respawn() 
+    public void Kill()
     {
-        transform.position = spawn;
+        // Print a message
+        Debug.Log("Oh noes I izz kill");
+
+        // Daaaa....
+        Destroy(gameObject);
+
+        // Notify respawn of our demise
+        GameObject respawn = GameObject.FindWithTag("Respawn");
+        respawn.GetComponent<SpawnPoint>().Notify();
     }
 }

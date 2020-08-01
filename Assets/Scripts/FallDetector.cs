@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class FallDetector : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter2D(Collider2D other) 
+    {
         if (other.tag == "Player")
         {
-            other.GetComponent<PlayerMotor>().Respawn();
+            Debug.Log("You DAAAAA!");
+            other.GetComponent<PlayerMotor>().Kill();
         }
     }
 }
