@@ -11,11 +11,13 @@ public class PlayerMotor : MonoBehaviour
     float jump;
     bool jumped;
     bool grounded;
+    Vector2 spawn;
     Rigidbody2D r2d;
 
     void Start()
     {
         r2d = GetComponent<Rigidbody2D>();
+        spawn = transform.position;
     }
 
     void Update()
@@ -27,7 +29,6 @@ public class PlayerMotor : MonoBehaviour
         // Check if grounded
         Debug.DrawRay(transform.position, Vector2.down*1.1f, Color.white);
         grounded = Physics2D.Raycast(transform.position, Vector2.down, 1.1f);
-        Debug.Log(grounded);
     }
 
     void FixedUpdate()
@@ -43,5 +44,9 @@ public class PlayerMotor : MonoBehaviour
             jumped = true;
         }
         if (jump == 0) { jumped = false; }
+    }
+
+    public void Respawn() {
+        transform.position = spawn;
     }
 }
