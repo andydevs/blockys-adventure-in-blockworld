@@ -89,4 +89,13 @@ public class PlayerMotor : MonoBehaviour
         GameObject respawn = GameObject.FindWithTag("Respawn");
         respawn.GetComponent<SpawnPoint>().Notify();
     }
+
+    public void Win()
+    {
+        // Print a message
+        Debug.Log("I deeed it!");
+
+        // Daaa?
+        Destroy(gameObject);
+    }
 }
