@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnPoint : MonoBehaviour
 {
     public GameObject blockyPrefab;
-
+    
     GameObject blockyInstance;
 
     void Start()
@@ -13,14 +13,8 @@ public class SpawnPoint : MonoBehaviour
         SpawnABlocky();
     }
 
-    void SpawnABlocky()
+    public void SpawnABlocky()
     {
         blockyInstance = Instantiate(blockyPrefab, transform.position, Quaternion.identity);
-    }
-
-    public void Notify()
-    {
-        Debug.Log("Rip Blocky");
-        SpawnABlocky();
     }
 }

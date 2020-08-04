@@ -9,21 +9,21 @@ public class PlayerMotor : MonoBehaviour
     public float moveMaxVelocity = 20;
     public float moveForce = 10;
     public float jumpForce = 500;
+    
+    // GameController Object
+    GameController game;
 
-    // Motion Axes
+    // Physics Systme
+    Rigidbody2D r2d;
     float move;
     float jump;
 
-    // Spawn point
-    Vector2 spawn;
-
-    // Components
-    Rigidbody2D r2d;
-
     void Start()
     {
+        game = GameObject
+            .FindWithTag("GameController")
+            .GetComponent<GameController>();
         r2d = GetComponent<Rigidbody2D>();
-        spawn = transform.position;
     }
 
     void Update()
@@ -85,9 +85,8 @@ public class PlayerMotor : MonoBehaviour
         // Daaaa....
         Destroy(gameObject);
 
-        // Notify respawn of our demise
-        GameObject respawn = GameObject.FindWithTag("Respawn");
-        respawn.GetComponent<SpawnPoint>().Notify();
+        // Notify game of our demise
+        game.BlockysDead();
     }
 
     public void Win()
@@ -97,5 +96,8 @@ public class PlayerMotor : MonoBehaviour
 
         // Daaa?
         Destroy(gameObject);
+
+        // Notify game of our Victory
+        game.BlockyWon();
     }
 }
