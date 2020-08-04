@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Get controllers
         spawnPoint = GameObject
             .FindWithTag("Respawn")
             .GetComponent<SpawnPoint>();

@@ -13,6 +13,7 @@ public class UISystem : MonoBehaviour
     {
         deadUI = transform.Find("Dead UI").gameObject;
         winnerUI = transform.Find("Winner UI").gameObject;
+        ResetUI();
     }
 
     public void DeadUI()
