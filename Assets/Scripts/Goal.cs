@@ -9,7 +9,7 @@ public class Goal : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("You Deed it");
-            other.GetComponent<PlayerMotor>().Win();
+            other.GetComponent<PlayerController>().Win();
         }
     }
 }

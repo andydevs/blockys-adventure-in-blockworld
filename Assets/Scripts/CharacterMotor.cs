@@ -3,36 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMotor : MonoBehaviour
+public class CharacterMotor : MonoBehaviour
 {
     // Motion Parameters
     public float moveMaxVelocity = 20;
     public float moveForce = 10;
     public float jumpForce = 500;
-    
-    // GameController Object
-    GameController game;
 
     // Physics Systme
     Rigidbody2D r2d;
     float move;
     float jump;
 
+    // Start is called before the first frame update
     void Start()
     {
-        game = GameObject
-            .FindWithTag("GameController")
-            .GetComponent<GameController>();
         r2d = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-    {
-        // Get x and jump axes
-        SetMoveAxis(Input.GetAxis("Horizontal"));
-        SetJumpAxis(Input.GetAxis("Jump"));
-    }
-
+    // Update is called once per physics update
     void FixedUpdate()
     {
         // Only if Grounded
@@ -75,29 +64,5 @@ public class PlayerMotor : MonoBehaviour
     public bool IsGrounded()
     {
         return IsLeftGrounded() || IsRightGrounded();
-    }
-
-    public void Kill()
-    {
-        // Print a message
-        Debug.Log("Oh noes I izz kill");
-
-        // Daaaa....
-        Destroy(gameObject);
-
-        // Notify game of our demise
-        game.BlockysDead();
-    }
-
-    public void Win()
-    {
-        // Print a message
-        Debug.Log("I deeed it!");
-
-        // Daaa?
-        Destroy(gameObject);
-
-        // Notify game of our Victory
-        game.BlockyWon();
     }
 }

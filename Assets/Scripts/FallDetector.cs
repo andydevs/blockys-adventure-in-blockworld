@@ -9,7 +9,7 @@ public class FallDetector : MonoBehaviour
         if (other.tag == "Player")
         {
             Debug.Log("You DAAAAA!");
-            other.GetComponent<PlayerMotor>().Kill();
+            other.GetComponent<PlayerController>().Kill();
         }
     }
 }
