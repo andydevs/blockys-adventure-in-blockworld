@@ -34,4 +34,9 @@ public class GameController : MonoBehaviour
         ui.ResetUI();
         spawnPoint.SpawnABlocky();
     }
+
+    public void Quit()
+    {
+        Application.Quit(0);
+    }
 }
