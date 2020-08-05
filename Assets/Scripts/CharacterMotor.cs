@@ -6,12 +6,12 @@ using UnityEngine;
 public class CharacterMotor : MonoBehaviour
 {
     // Motion Parameters
-    public float moveMaxVelocity = 20;
-    public float moveForce = 10;
-    public float jumpForce = 500;
+    public float moveVelocity = 20;
+    public float jumpHeight = 20;
 
-    // Physics Systme
+    // Physics System
     Rigidbody2D r2d;
+    float jumpVelocity;
     float move;
     float jump;
 
@@ -24,20 +24,14 @@ public class CharacterMotor : MonoBehaviour
     // Update is called once per physics update
     void FixedUpdate()
     {
-        // Only if Grounded
-        if (IsGrounded())
+        // Move more snappy
+        r2d.velocity = new Vector2(moveVelocity*move, r2d.velocity.y);
+
+        // Jump
+        if (jump > 0 && IsGrounded())
         {
-            // Move left/right if below velocity
-            if (r2d.velocity.sqrMagnitude < moveMaxVelocity*moveMaxVelocity)
-            {
-                r2d.AddForce(Vector2.right * move * moveForce);
-            }
-            
-            // Jump
-            if (jump > 0)
-            {
-                r2d.AddForce(Vector2.up * jumpForce);
-            }
+            jumpVelocity = Mathf.Sqrt(2*r2d.gravityScale*jumpHeight);
+            r2d.velocity = new Vector2(r2d.velocity.x, jumpVelocity);
         }
     }
 
