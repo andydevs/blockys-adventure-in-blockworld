@@ -7,12 +7,14 @@ public class UISystem : MonoBehaviour
     // Sub UI
     GameObject deadUI;
     GameObject winnerUI;
+    GameObject pauseUI;
 
     // Start is called before the first frame update
     void Start()
     {
         deadUI = transform.Find("Dead UI").gameObject;
         winnerUI = transform.Find("Winner UI").gameObject;
+        pauseUI = transform.Find("Pause UI").gameObject;
         ResetUI();
     }
 
@@ -28,10 +30,17 @@ public class UISystem : MonoBehaviour
         winnerUI.SetActive(true);
     }
 
+    public void PauseUI()
+    {
+        Debug.Log("Paused!");
+        pauseUI.SetActive(true);
+    }
+
     public void ResetUI()
     {
         Debug.Log("Start Again!");
         winnerUI.SetActive(false);
         deadUI.SetActive(false);
+        pauseUI.SetActive(false);
     }
 }

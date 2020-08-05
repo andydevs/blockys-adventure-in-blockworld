@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    // Sub objects
     SpawnPoint spawnPoint;
     UISystem ui;
 
@@ -17,6 +18,14 @@ public class GameController : MonoBehaviour
         ui = GameObject
             .FindWithTag("UI")
             .GetComponent<UISystem>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause();
+        }
     }
 
     public void BlockysDead()
@@ -38,5 +47,17 @@ public class GameController : MonoBehaviour
     public void Quit()
     {
         Application.Quit(0);
+    }
+
+    public void Pause()
+    {
+        ui.PauseUI();
+        Time.timeScale = 0f;
+    }
+
+    public void Resume()
+    {
+        ui.ResetUI();
+        Time.timeScale = 1f;
     }
 }
