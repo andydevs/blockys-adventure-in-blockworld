@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameController : MonoBehaviour
 {
@@ -20,13 +21,10 @@ public class GameController : MonoBehaviour
             .GetComponent<UISystem>();
     }
 
-    void Update()
+    public void OnStart(InputValue val)
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (ui.IsPaused()) Resume();
-            else Pause();
-        }
+        if (ui.IsPaused()) Resume();
+        else Pause();
     }
 
     public void BlockysDead()

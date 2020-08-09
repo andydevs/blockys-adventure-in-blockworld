@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3580506746379105475}
   - component: {fileID: 3580506746379105474}
   - component: {fileID: 3580506746379105473}
-  - component: {fileID: 6317127974099672833}
+  - component: {fileID: 8735767446889003150}
+  - component: {fileID: -4789012131146680185}
   - component: {fileID: 3580506746379105478}
   m_Layer: 2
   m_Name: Blocky
@@ -130,7 +131,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &6317127974099672833
+--- !u!114 &8735767446889003150
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,6 +143,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430893e1c118686408be8c9c60fc86a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4789012131146680185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3580506746379105472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: f30c27e23167306419d2a281636d0097,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ef8daae9-bb92-4bdd-882a-f92cffde6605
+    m_ActionName: Player/Move[/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3d09303b-c603-4836-8f98-b9b1ea9ddc08
+    m_ActionName: Player/Jump[/Keyboard/space]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!114 &3580506746379105478
 MonoBehaviour:
   m_ObjectHideFlags: 0

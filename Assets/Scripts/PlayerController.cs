@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterMotor))]
 public class PlayerController : MonoBehaviour
@@ -19,12 +20,14 @@ public class PlayerController : MonoBehaviour
         motor = GetComponent<CharacterMotor>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnMove(InputValue val)
     {
-        // Get x and jump axes
-        motor.SetMoveAxis(Input.GetAxis("Horizontal"));
-        motor.SetJumpAxis(Input.GetAxis("Jump"));
+        motor.SetMoveAxis(val.Get<float>());
+    }
+
+    public void OnJump(InputValue val)
+    {
+        motor.Jump();
     }
 
     public void Kill()

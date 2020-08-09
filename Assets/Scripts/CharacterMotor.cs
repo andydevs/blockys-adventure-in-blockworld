@@ -26,13 +26,6 @@ public class CharacterMotor : MonoBehaviour
     {
         // Move more snappy
         r2d.velocity = new Vector2(moveVelocity*move, r2d.velocity.y);
-
-        // Jump
-        if (jump > 0 && IsGrounded())
-        {
-            jumpVelocity = Mathf.Sqrt(2*r2d.gravityScale*jumpHeight);
-            r2d.velocity = new Vector2(r2d.velocity.x, jumpVelocity);
-        }
     }
 
     public void SetMoveAxis(float val)
@@ -40,9 +33,13 @@ public class CharacterMotor : MonoBehaviour
         move = val;
     }
 
-    public void SetJumpAxis(float val)
+    public void Jump()
     {
-        jump = val;
+        if (IsGrounded())
+        {
+            jumpVelocity = Mathf.Sqrt(2*r2d.gravityScale*jumpHeight);
+            r2d.velocity = new Vector2(r2d.velocity.x, jumpVelocity);
+        }
     }
 
     public bool IsLeftGrounded()
