@@ -24,7 +24,8 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Pause();
+            if (ui.IsPaused()) Resume();
+            else Pause();
         }
     }
 
@@ -57,7 +58,7 @@ public class GameController : MonoBehaviour
 
     public void Resume()
     {
-        ui.ResetUI();
+        ui.UnpauseUI();
         Time.timeScale = 1f;
     }
 }
