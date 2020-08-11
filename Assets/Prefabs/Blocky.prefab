@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3580506746379105475}
   - component: {fileID: 3580506746379105474}
   - component: {fileID: 3580506746379105473}
-  - component: {fileID: 8735767446889003150}
   - component: {fileID: -4789012131146680185}
+  - component: {fileID: 8735767446889003150}
   - component: {fileID: 3580506746379105478}
   m_Layer: 2
   m_Name: Blocky
@@ -131,18 +131,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &8735767446889003150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3580506746379105472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 430893e1c118686408be8c9c60fc86a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-4789012131146680185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +170,18 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &8735767446889003150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3580506746379105472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430893e1c118686408be8c9c60fc86a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3580506746379105478
 MonoBehaviour:
   m_ObjectHideFlags: 0
