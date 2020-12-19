@@ -11,14 +11,13 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Get controllers
-        spawnPoint = GameObject
-            .FindWithTag("Respawn")
-            .GetComponent<SpawnPoint>();
+        // Get sub objects
+        spawnPoint = GetComponentInChildren<SpawnPoint>();
     }
 
     public void OnStart(InputValue val)
     {
+
     }
 
     public void BlockysDead()
@@ -33,6 +32,7 @@ public class GameController : MonoBehaviour
 
     public void Restart()
     {
+
     }
 
     public void Quit()
