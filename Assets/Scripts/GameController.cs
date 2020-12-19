@@ -7,7 +7,6 @@ public class GameController : MonoBehaviour
 {
     // Sub objects
     SpawnPoint spawnPoint;
-    UISystem ui;
 
     // Start is called before the first frame update
     void Start()
@@ -16,47 +15,28 @@ public class GameController : MonoBehaviour
         spawnPoint = GameObject
             .FindWithTag("Respawn")
             .GetComponent<SpawnPoint>();
-        ui = GameObject
-            .FindWithTag("UI")
-            .GetComponent<UISystem>();
     }
 
     public void OnStart(InputValue val)
     {
-        if (ui.IsPaused()) Resume();
-        else Pause();
     }
 
     public void BlockysDead()
     {
-        ui.DeadUI();
+        spawnPoint.SpawnABlocky();
     }
 
     public void BlockyWon()
     {
-        ui.WinnerUI();
+        spawnPoint.SpawnABlocky();
     }
 
     public void Restart()
     {
-        ui.ResetUI();
-        spawnPoint.SpawnABlocky();
     }
 
     public void Quit()
     {
         Application.Quit(0);
-    }
-
-    public void Pause()
-    {
-        ui.PauseUI();
-        Time.timeScale = 0f;
-    }
-
-    public void Resume()
-    {
-        ui.UnpauseUI();
-        Time.timeScale = 1f;
     }
 }
