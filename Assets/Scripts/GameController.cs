@@ -19,8 +19,12 @@ public class GameController : MonoBehaviour
 
     public void OnStart(InputValue val)
     {
-        if (IsPaused()) Resume();
-        else Pause();
+        Debug.Log(spawnPoint.BlockyIsAlive());
+        if (spawnPoint.BlockyIsAlive())
+        {
+            if (IsPaused()) Resume();
+            else Pause();
+        }
     }
 
     public void BlockysDead()
@@ -38,16 +42,16 @@ public class GameController : MonoBehaviour
         return Time.timeScale < 0.5f;
     }
 
-    public void Resume()
-    {
-        uiController.CloseAll();
-        Time.timeScale = 1.0f;
-    }
-
     public void Pause()
     {
         uiController.OpenPause();
         Time.timeScale = 0.0f;
+    }
+
+    public void Resume()
+    {
+        uiController.CloseAll();
+        Time.timeScale = 1.0f;
     }
 
     public void Restart()
@@ -58,6 +62,7 @@ public class GameController : MonoBehaviour
 
     public void Quit()
     {
+        Debug.Log("Quit application...");
         Application.Quit(0);
     }
 }

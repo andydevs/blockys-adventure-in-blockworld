@@ -17,4 +17,9 @@ public class SpawnPoint : MonoBehaviour
     {
         blockyInstance = Instantiate(blockyPrefab, transform.position, Quaternion.identity);
     }
+
+    public bool BlockyIsAlive()
+    {
+        return blockyInstance != null;
+    }
 }
