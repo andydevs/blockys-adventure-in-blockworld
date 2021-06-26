@@ -42,18 +42,11 @@ public class CharacterMotor : MonoBehaviour
         }
     }
 
-    public bool IsLeftGrounded()
-    {
-        return Physics2D.Raycast(transform.position + Vector3.left*0.45f, Vector2.down, 1.1f);
-    }
-
-    public bool IsRightGrounded()
-    {
-        return Physics2D.Raycast(transform.position + Vector3.right*0.45f, Vector2.down, 1.1f);
-    }
-
     public bool IsGrounded()
     {
-        return IsLeftGrounded() || IsRightGrounded();
+        return Physics2D.BoxCast(
+            (Vector2)transform.position + Vector2.down*transform.localScale.y, 
+            new Vector2(0.8f, 0.5f), 
+            transform.rotation.z, Vector2.down, 0.1f);
     }
 }
