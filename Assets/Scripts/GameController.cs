@@ -27,16 +27,6 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void BlockysDead()
-    {
-        uiController.OpenDead();
-    }
-
-    public void BlockyWon()
-    {
-        uiController.OpenWin();
-    }
-
     public bool IsPaused()
     {
         return Time.timeScale < 0.5f;

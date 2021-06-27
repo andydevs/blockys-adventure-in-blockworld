@@ -8,6 +8,12 @@ public class UIController : MonoBehaviour
     public GameObject winMenu;
     public GameObject dieMenu;
 
+    void Start()
+    {
+        PlayerController.OnBlockysDead += OpenDead;
+        PlayerController.OnBlockyWon += OpenWin;
+    }
+
     public void CloseAll()
     {
         pauseMenu.SetActive(false);
