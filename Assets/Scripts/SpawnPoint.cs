@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpawnPoint : MonoBehaviour
 {
     public GameObject blockyPrefab;
-    
     GameObject blockyInstance;
 
     void Start()

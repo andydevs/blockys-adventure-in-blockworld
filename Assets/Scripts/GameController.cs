@@ -17,33 +17,6 @@ public class GameController : MonoBehaviour
         uiController = GetComponentInChildren<UIController>();
     }
 
-    public void OnStart(InputValue val)
-    {
-        Debug.Log(spawnPoint.BlockyIsAlive());
-        if (spawnPoint.BlockyIsAlive())
-        {
-            if (IsPaused()) Resume();
-            else Pause();
-        }
-    }
-
-    public bool IsPaused()
-    {
-        return Time.timeScale < 0.5f;
-    }
-
-    public void Pause()
-    {
-        uiController.OpenPause();
-        Time.timeScale = 0.0f;
-    }
-
-    public void Resume()
-    {
-        uiController.CloseAll();
-        Time.timeScale = 1.0f;
-    }
-
     public void Restart()
     {
         uiController.CloseAll();
