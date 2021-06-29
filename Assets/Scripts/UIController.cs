@@ -53,6 +53,18 @@ public class UIController : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
+    public void Restart()
+    {
+        CloseAll();
+        spawnPoint.SpawnABlocky();
+    }
+
+    public void Quit()
+    {
+        Debug.Log("Quit application...");
+        Application.Quit(0);
+    }
+
     public void CloseAll()
     {
         pauseMenu.SetActive(false);
