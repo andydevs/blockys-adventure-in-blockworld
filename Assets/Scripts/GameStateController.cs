@@ -1,0 +1,63 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class GameStateController : MonoBehaviour
+{
+    // Events
+    public delegate void PauseEvent();
+    public static event PauseEvent OnPause;
+    public delegate void CloseUIEvent();
+    public static event CloseUIEvent OnCloseUI;
+
+    // Spawn point game object
+    SpawnPoint spawnPoint;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        // Find spawn point
+        spawnPoint = GameObject
+            .Find("Spawn Point")
+            .GetComponent<SpawnPoint>();
+    }
+
+    public void OnStart(InputValue val)
+    {
+        if (spawnPoint.BlockyIsAlive())
+        {
+            if (IsPaused()) Resume();
+            else Pause();
+        }
+    }
+
+    public bool IsPaused()
+    {
+        return Time.timeScale < 0.5f;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0.0f;
+        OnPause();
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1.0f;
+        OnCloseUI();
+    }
+
+    public void Restart()
+    {
+        spawnPoint.SpawnABlocky();
+        OnCloseUI();
+    }
+
+    public void Quit()
+    {
+        Debug.Log("Quit application...");
+        Application.Quit(0);
+    }
+}

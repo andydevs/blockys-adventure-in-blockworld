@@ -451,7 +451,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 461511356}
+      - m_Target: {fileID: 461511358}
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -1053,7 +1053,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 461511356}
+      - m_Target: {fileID: 461511358}
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
@@ -1224,6 +1224,7 @@ GameObject:
   - component: {fileID: 461511353}
   - component: {fileID: 461511357}
   - component: {fileID: 461511356}
+  - component: {fileID: 461511358}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1359,6 +1360,18 @@ MonoBehaviour:
   m_DefaultActionMap: Menu
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &461511358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461511351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037a4e14d587a8b4dbe275c5f6ba9f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &498069019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,7 +1595,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 461511356}
+      - m_Target: {fileID: 461511358}
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
@@ -1712,7 +1725,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 461511356}
+      - m_Target: {fileID: 461511358}
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -1917,7 +1930,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 461511356}
+      - m_Target: {fileID: 461511358}
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
@@ -2700,7 +2713,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 461511356}
+      - m_Target: {fileID: 461511358}
         m_MethodName: Resume
         m_Mode: 1
         m_Arguments:

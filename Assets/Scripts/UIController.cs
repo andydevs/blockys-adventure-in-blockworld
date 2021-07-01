@@ -10,59 +10,13 @@ public class UIController : MonoBehaviour
     public GameObject winMenu;
     public GameObject dieMenu;
 
-    // Spawn point game objects
-    SpawnPoint spawnPoint;
-
     void Start()
     {
-        // Hook into player events
+        // Hook into events
         PlayerController.OnBlockysDead += OpenDead;
         PlayerController.OnBlockyWon += OpenWin;
-
-        // Find spawn point
-        spawnPoint = GameObject
-            .Find("Spawn Point")
-            .GetComponent<SpawnPoint>();
-    }
-
-    public void OnStart(InputValue val)
-    {
-        Debug.Log("Blocky is alive? " + spawnPoint.BlockyIsAlive());
-        if (spawnPoint.BlockyIsAlive())
-        {
-            Debug.Log("Currently paused?: " + IsPaused());
-            if (IsPaused()) Resume();
-            else Pause();
-        }
-    }
-
-    public bool IsPaused()
-    {
-        return Time.timeScale < 0.5f;
-    }
-
-    public void Pause()
-    {
-        OpenPause();
-        Time.timeScale = 0.0f;
-    }
-
-    public void Resume()
-    {
-        CloseAll();
-        Time.timeScale = 1.0f;
-    }
-
-    public void Restart()
-    {
-        CloseAll();
-        spawnPoint.SpawnABlocky();
-    }
-
-    public void Quit()
-    {
-        Debug.Log("Quit application...");
-        Application.Quit(0);
+        GameStateController.OnPause += OpenPause;
+        GameStateController.OnCloseUI += CloseAll;
     }
 
     public void CloseAll()
@@ -74,19 +28,16 @@ public class UIController : MonoBehaviour
 
     public void OpenPause()
     {
-        CloseAll();
         pauseMenu.SetActive(true);
     }
 
     public void OpenWin()
     {
-        CloseAll();
         winMenu.SetActive(true);
     }
 
     public void OpenDead()
     {
-        CloseAll();
         dieMenu.SetActive(true);
     }
 }
