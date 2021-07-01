@@ -10,22 +10,12 @@ public class GameStateController : MonoBehaviour
     public static event PauseEvent OnPause;
     public delegate void CloseUIEvent();
     public static event CloseUIEvent OnCloseUI;
-
-    // Spawn point game object
-    SpawnPoint spawnPoint;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Find spawn point
-        spawnPoint = GameObject
-            .Find("Spawn Point")
-            .GetComponent<SpawnPoint>();
-    }
+    public delegate void SpawnABlockyEvent();
+    public static event SpawnABlockyEvent OnSpawnABlocky;
 
     public void OnStart(InputValue val)
     {
-        if (spawnPoint.BlockyIsAlive())
+        if (PlayerController.BlockyIsAlive())
         {
             if (IsPaused()) Resume();
             else Pause();
@@ -51,7 +41,7 @@ public class GameStateController : MonoBehaviour
 
     public void Restart()
     {
-        spawnPoint.SpawnABlocky();
+        OnSpawnABlocky();
         OnCloseUI();
     }
 

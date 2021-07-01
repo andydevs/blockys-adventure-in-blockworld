@@ -6,6 +6,12 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterMotor))]
 public class PlayerController : MonoBehaviour
 {
+    public static bool BlockyIsAlive()
+    {
+        PlayerController[] blockys = FindObjectsOfType<PlayerController>();
+        return blockys.Length > 0;
+    }
+
     // Events
     public delegate void BlockysDeadEvent();
     public static event BlockysDeadEvent OnBlockysDead;

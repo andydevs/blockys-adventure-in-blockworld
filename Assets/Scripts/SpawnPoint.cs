@@ -5,20 +5,15 @@ using UnityEngine;
 public class SpawnPoint : MonoBehaviour
 {
     public GameObject blockyPrefab;
-    GameObject blockyInstance;
 
     void Start()
     {
+        GameStateController.OnSpawnABlocky += SpawnABlocky;
         SpawnABlocky();
     }
 
     public void SpawnABlocky()
     {
-        blockyInstance = Instantiate(blockyPrefab, transform.position, Quaternion.identity);
-    }
-
-    public bool BlockyIsAlive()
-    {
-        return blockyInstance != null;
+        Instantiate(blockyPrefab, transform.position, Quaternion.identity);
     }
 }
