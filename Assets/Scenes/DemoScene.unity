@@ -1385,7 +1385,9 @@ GameObject:
   - component: {fileID: 464421692}
   - component: {fileID: 464421691}
   - component: {fileID: 464421694}
-  m_Layer: 0
+  - component: {fileID: 464421696}
+  - component: {fileID: 464421695}
+  m_Layer: 2
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1400,7 +1402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 464421689}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9, y: -10.02, z: 0}
+  m_LocalPosition: {x: 0.9, y: -8.57, z: 0}
   m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 2065447629}
@@ -1500,6 +1502,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &464421695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464421689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e6126489ad47745a3472d84bbe4329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &464421696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464421689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95eb70ae5e828ef49b821bf848bb6adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveVelocity: 10
+  jumpHeight: 20
 --- !u!1 &498069019
 GameObject:
   m_ObjectHideFlags: 0
@@ -3563,6 +3591,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Platform 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3224144638441600865, guid: eac9698d9a6cd0443bb5f8f50355a7c6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3224144638441600869, guid: eac9698d9a6cd0443bb5f8f50355a7c6,
         type: 3}
