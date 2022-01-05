@@ -3,41 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class UIController : MonoBehaviour
+namespace Assets.Scripts
 {
-    // UI Menus
-    public GameObject pauseMenu;
-    public GameObject winMenu;
-    public GameObject dieMenu;
-
-    void Start()
+    public class UIController : MonoBehaviour
     {
-        // Hook into events
-        PlayerController.OnBlockysDead += OpenDead;
-        PlayerController.OnBlockyWon += OpenWin;
-        GameStateController.OnPause += OpenPause;
-        GameStateController.OnCloseUI += CloseAll;
-    }
+        // UI Menus
+        public GameObject pauseMenu;
+        public GameObject winMenu;
+        public GameObject dieMenu;
 
-    public void CloseAll()
-    {
-        pauseMenu.SetActive(false);
-        winMenu.SetActive(false);
-        dieMenu.SetActive(false);
-    }
+        void Start()
+        {
+            // Hook into events
+            PlayerController.OnBlockysDead += OpenDead;
+            PlayerController.OnBlockyWon += OpenWin;
+            GameStateController.OnPause += OpenPause;
+            GameStateController.OnCloseUI += CloseAll;
+        }
 
-    public void OpenPause()
-    {
-        pauseMenu.SetActive(true);
-    }
+        public void CloseAll()
+        {
+            pauseMenu.SetActive(false);
+            winMenu.SetActive(false);
+            dieMenu.SetActive(false);
+        }
 
-    public void OpenWin()
-    {
-        winMenu.SetActive(true);
-    }
+        public void OpenPause()
+        {
+            pauseMenu.SetActive(true);
+        }
 
-    public void OpenDead()
-    {
-        dieMenu.SetActive(true);
+        public void OpenWin()
+        {
+            winMenu.SetActive(true);
+        }
+
+        public void OpenDead()
+        {
+            dieMenu.SetActive(true);
+        }
     }
 }

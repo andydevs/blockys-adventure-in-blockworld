@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnPoint : MonoBehaviour
+namespace Assets.Scripts
 {
-    public GameObject blockyPrefab;
-
-    void Start()
+    public class SpawnPoint : MonoBehaviour
     {
-        GameStateController.OnSpawnABlocky += SpawnABlocky;
-        SpawnABlocky();
-    }
+        public GameObject blockyPrefab;
 
-    public void SpawnABlocky()
-    {
-        Instantiate(blockyPrefab, transform.position, Quaternion.identity);
+        void Start()
+        {
+            GameStateController.OnSpawnABlocky += SpawnABlocky;
+            SpawnABlocky();
+        }
+
+        public void SpawnABlocky()
+        {
+            Instantiate(blockyPrefab, transform.position, Quaternion.identity);
+        }
     }
 }

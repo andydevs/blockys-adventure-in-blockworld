@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartMenuController : MonoBehaviour
+namespace Assets.Scripts
 {
-    public void StartGame()
+    public class StartMenuController : MonoBehaviour
     {
-        SceneManager.LoadScene("DemoScene");
-    }
+        public void StartGame()
+        {
+            SceneManager.LoadScene("DemoScene");
+        }
 
-    public void Quit()
-    {
-        Debug.Log("Quit Application...");
-        Application.Quit(0);
+        public void Quit()
+        {
+            Debug.Log("Quit Application...");
+            Application.Quit(0);
+        }
     }
 }

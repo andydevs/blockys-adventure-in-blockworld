@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Goal : MonoBehaviour
+namespace Assets.Scripts
 {
-    void OnTriggerEnter2D(Collider2D other) 
+    public class Goal : MonoBehaviour
     {
-        if (other.tag == "Player")
+        void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("You Deed it");
-            other.GetComponent<PlayerController>().Win();
+            if (other.tag == "Player")
+            {
+                Debug.Log("You Deed it");
+                other.GetComponent<PlayerController>().Win();
+            }
         }
     }
 }
