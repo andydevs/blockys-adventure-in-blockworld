@@ -6,12 +6,13 @@ namespace Assets.Scripts
     [RequireComponent(typeof(CharacterMotor))]
     public class EnemyController : MonoBehaviour
     {
-        private CharacterMotor characterMotor;
-        private float ax;
-        
         // Ledge detection parameters
-        private const float LEDGE_OFFSET = 0.1f;
-        private const float LEDGE_DEPTH = 1.0f;
+        public float ledgeOffset  = 0.1f;
+        public float ledgeDepth   = 1.0f;
+        public Vector2 hitBoxSize = new Vector2(1.1f, 1);
+
+        // Components
+        private CharacterMotor motor;
 
         // Direction aliases
         private const int RIGHT = 1;
@@ -20,32 +21,49 @@ namespace Assets.Scripts
         // Use this for initialization
         void Start()
         {
-            characterMotor = GetComponent<CharacterMotor>();
-            ax = 1;
+            motor = GetComponent<CharacterMotor>();
+            motor.SetMoveAxis(RIGHT);
         }
 
         // Update is called once per frame
         void Update()
         {
-            characterMotor.SetMoveAxis(ax);
-            if (Ledge(RIGHT) && !Ledge(LEFT)) { ax = -1; }
-            else if (Ledge(LEFT) && !Ledge(RIGHT)) { ax = 1; }
-        }
+            // Set axis based on ledge
+            float xRayOffset       = transform.localScale.x + 2 * ledgeOffset;
+            Vector2 rayOffsetRight = new Vector2(RIGHT * xRayOffset, -transform.localScale.y) / 2;
+            Vector2 rayOffsetLeft  = new Vector2(LEFT * xRayOffset, -transform.localScale.y) / 2;
+            Vector2 rayOriginRight = (Vector2)transform.position + rayOffsetRight;
+            Vector2 rayOriginLeft  = (Vector2)transform.position + rayOffsetLeft;
+            bool ledgeRight        = !Physics2D.Raycast(rayOriginRight, Vector2.down, ledgeDepth);
+            bool ledgeLeft         = !Physics2D.Raycast(rayOriginLeft, Vector2.down, ledgeDepth);
+            bool onlyLedgeRight    = ledgeRight && !ledgeLeft;
+            bool onlyLedgeLeft     = ledgeLeft && !ledgeRight;
+            if (onlyLedgeRight) { motor.SetMoveAxis(LEFT); }
+            else if (onlyLedgeLeft) { motor.SetMoveAxis(RIGHT); }
 
-        Vector2 RayOffset(int direction)
-        {
-            return new Vector2(direction * (transform.localScale.x + 2*LEDGE_OFFSET), -transform.localScale.y) / 2;
-        }
-
-        bool Ledge(int direction)
-        {
-            return !Physics2D.Raycast((Vector2)transform.position + RayOffset(direction), Vector2.down, LEDGE_DEPTH);
+            // Check if we hit that meddling blocky
+            int collisionMask = LayerMask.GetMask("Player");
+            RaycastHit2D hit = Physics2D.BoxCast(transform.position, hitBoxSize, 0, Vector2.right, 1, collisionMask);
+            if (hit.collider != null) {
+                Debug.Log("Aaaah I gotchu blocky muahahahah");
+                hit.collider.GetComponent<PlayerController>().Kill();
+            }
         }
 
         void OnDrawGizmos()
         {
-            Gizmos.DrawRay(new Ray(transform.position + (Vector3)RayOffset(RIGHT), LEDGE_DEPTH * Vector3.down));
-            Gizmos.DrawRay(new Ray(transform.position + (Vector3)RayOffset(LEFT),  LEDGE_DEPTH * Vector3.down));
+            // Ledge lines
+            float xRayOffset = transform.localScale.x + 2 * ledgeOffset;
+            Vector2 rayOffsetRight = new Vector2(RIGHT * xRayOffset, -transform.localScale.y) / 2;
+            Vector2 rayOffsetLeft  = new Vector2(LEFT * xRayOffset,  -transform.localScale.y) / 2;
+            Vector2 rayOriginRight = (Vector2)transform.position + rayOffsetRight;
+            Vector2 rayOriginLeft  = (Vector2)transform.position + rayOffsetLeft;
+            Vector2 lineDirection = ledgeDepth * Vector3.down;
+
+            // Draw Gizmos
+            Gizmos.DrawLine(rayOriginRight, rayOriginRight + lineDirection);
+            Gizmos.DrawLine(rayOriginLeft, rayOriginLeft + lineDirection);
+            Gizmos.DrawCube(transform.position, new Vector3(hitBoxSize.x, hitBoxSize.y, 1));
         }
     }
 }

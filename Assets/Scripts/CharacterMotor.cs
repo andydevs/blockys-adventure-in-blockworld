@@ -11,11 +11,13 @@ namespace Assets.Scripts
         public float moveVelocity = 20;
         public float jumpHeight = 20;
 
+        // Bound detection parameters
+        public Vector2 boxSize = new Vector2(0.8f, 0.27f);
+
         // Physics System
         Rigidbody2D r2d;
         float jumpVelocity;
         float move;
-        float jump;
 
         // Start is called before the first frame update
         void Start()
@@ -44,12 +46,17 @@ namespace Assets.Scripts
             }
         }
 
-        public bool IsGrounded()
+        bool IsGrounded()
         {
+            int collisionMask = LayerMask.GetMask("Terrain");
             return Physics2D.BoxCast(
-                (Vector2)transform.position + Vector2.down * transform.localScale.y,
-                new Vector2(0.8f, 0.5f),
-                transform.rotation.z, Vector2.down, 0.1f);
+                (Vector2)transform.position + Vector2.down * (transform.localScale.y + boxSize.y) / 1.98f, 
+                boxSize, 0, Vector2.down, 1f, collisionMask);
+        }
+
+        void OnDrawGizmos()
+        {
+            Gizmos.DrawCube((Vector2)transform.position + Vector2.down * (transform.localScale.y + boxSize.y)/1.98f, boxSize);
         }
     }
 }
