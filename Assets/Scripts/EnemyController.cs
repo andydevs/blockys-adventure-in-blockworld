@@ -50,6 +50,7 @@ namespace Assets.Scripts
             }
         }
 
+        // Called when gizmos are being drawn (editor or player)
         void OnDrawGizmos()
         {
             // Ledge lines
@@ -64,6 +65,13 @@ namespace Assets.Scripts
             Gizmos.DrawLine(rayOriginRight, rayOriginRight + lineDirection);
             Gizmos.DrawLine(rayOriginLeft, rayOriginLeft + lineDirection);
             Gizmos.DrawCube(transform.position, new Vector3(hitBoxSize.x, hitBoxSize.y, 1));
+        }
+        
+        // Kill this boi
+        public void Kill()
+        {
+            Debug.Log("Gaaahhh ya got me!");
+            Destroy(gameObject);
         }
     }
 }

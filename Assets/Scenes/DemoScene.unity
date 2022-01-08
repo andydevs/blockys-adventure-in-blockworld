@@ -1387,7 +1387,7 @@ GameObject:
   - component: {fileID: 464421694}
   - component: {fileID: 464421696}
   - component: {fileID: 464421695}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1516,7 +1516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ledgeOffset: 0.1
   ledgeDepth: 0.88
-  hitBoxSize: {x: 1.1, y: 0.88}
+  hitBoxSize: {x: 1.1, y: 0.52}
 --- !u!114 &464421696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1531,6 +1531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveVelocity: 10
   jumpHeight: 20
+  bounceHeight: 10
   boxSize: {x: 0.8, y: 0.27}
 --- !u!1 &498069019
 GameObject:

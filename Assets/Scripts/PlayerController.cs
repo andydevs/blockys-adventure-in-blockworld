@@ -29,16 +29,19 @@ namespace Assets.Scripts
             motor = GetComponent<CharacterMotor>();
         }
 
+        // Move when movement axis is given
         public void OnMove(InputValue val)
         {
             motor.SetMoveAxis(val.Get<float>());
         }
 
+        // Jump when jump button pressed
         public void OnJump(InputValue val)
         {
             motor.Jump();
         }
 
+        // Kill condition
         public void Kill()
         {
             Debug.Log("Oh noes I izz kill");
@@ -46,6 +49,7 @@ namespace Assets.Scripts
             OnBlockysDead();
         }
 
+        // Win condition
         public void Win()
         {
             Debug.Log("I deeed it!");
