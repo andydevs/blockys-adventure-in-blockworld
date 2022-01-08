@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Assets.Scripts
 {
     [RequireComponent(typeof(CharacterMotor))]
-    public class EnemyController : MonoBehaviour
+    public class EnemyController : MonoBehaviour, IKillable
     {
         // Ledge detection parameters
         public float ledgeOffset  = 0.1f;
@@ -46,7 +46,7 @@ namespace Assets.Scripts
             RaycastHit2D hit = Physics2D.BoxCast(transform.position, hitBoxSize, 0, Vector2.right, 1, collisionMask);
             if (hit.collider != null) {
                 Debug.Log("Aaaah I gotchu blocky muahahahah");
-                hit.collider.GetComponent<PlayerController>().Kill();
+                hit.collider.GetComponent<IKillable>().Kill();
             }
         }
 

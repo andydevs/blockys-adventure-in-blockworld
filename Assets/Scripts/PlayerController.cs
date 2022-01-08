@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 namespace Assets.Scripts
 {
     [RequireComponent(typeof(CharacterMotor))]
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IKillable
     {
         public static bool BlockyIsAlive()
         {

@@ -46,7 +46,7 @@ namespace Assets.Scripts
             if (enemyHit.collider != null) 
             {
                 Debug.Log("It's over enemy! I have the High Ground");
-                enemyHit.collider.GetComponent<EnemyController>().Kill();
+                enemyHit.collider.GetComponent<IKillable>().Kill();
                 GoUp(bounceHeight);
             }
         }

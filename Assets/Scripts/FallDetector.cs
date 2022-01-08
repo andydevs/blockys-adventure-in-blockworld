@@ -11,7 +11,7 @@ namespace Assets.Scripts
             if (other.tag == "Player")
             {
                 Debug.Log("You DAAAAA!");
-                other.GetComponent<PlayerController>().Kill();
+                other.GetComponent<IKillable>().Kill();
             }
         }
     }
