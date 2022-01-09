@@ -12,8 +12,13 @@ namespace Assets.Scripts
         public static event PauseEvent OnPause;
         public delegate void CloseUIEvent();
         public static event CloseUIEvent OnCloseUI;
-        public delegate void SpawnABlockyEvent();
-        public static event SpawnABlockyEvent OnSpawnABlocky;
+        public delegate void SpawnEvent();
+        public static event SpawnEvent OnSpawn;
+
+        void Start()
+        {
+            Restart();
+        }
 
         public void OnStart(InputValue val)
         {
@@ -43,7 +48,7 @@ namespace Assets.Scripts
 
         public void Restart()
         {
-            OnSpawnABlocky();
+            OnSpawn();
             OnCloseUI();
         }
 
