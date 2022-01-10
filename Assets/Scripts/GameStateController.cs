@@ -15,11 +15,6 @@ namespace Assets.Scripts
         public delegate void SpawnEvent();
         public static event SpawnEvent OnSpawn;
 
-        void Start()
-        {
-            Restart();
-        }
-
         public void OnStart(InputValue val)
         {
             if (PlayerController.BlockyIsAlive())

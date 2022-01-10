@@ -8,14 +8,24 @@ namespace Assets.Scripts
     {
         public GameObject characterPrefab;
 
+        // Handle for if character is still alive
+        private GameObject character;
+
         void Start()
         {
             GameStateController.OnSpawn += Spawn;
+            Spawn();
         }
 
         public void Spawn()
         {
-            Instantiate(characterPrefab, transform.position, Quaternion.identity);
+            if (character == null)
+            {
+                character = Instantiate(
+                    characterPrefab, 
+                    transform.position, 
+                    Quaternion.identity);
+            }
         }
     }
 }
