@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallDetector : MonoBehaviour
+namespace Assets.Scripts 
 {
-    void OnTriggerEnter2D(Collider2D other) 
+    public class FallDetector : MonoBehaviour
     {
-        if (other.tag == "Player")
+        void OnTriggerEnter2D(Collider2D other) 
         {
-            Debug.Log("You DAAAAA!");
-            other.GetComponent<PlayerController>().Kill();
+            if (other.tag == "Player")
+            {
+                Debug.Log("You DAAAAA!");
+                other.GetComponent<IKillable>().Kill();
+            }
         }
     }
 }

@@ -133,6 +133,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1391125434}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &69497974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 69497975}
+  - component: {fileID: 69497976}
+  m_Layer: 0
+  m_Name: Enemy Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &69497975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69497974}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.3, y: -9.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2065447629}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &69497976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69497974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d57fe4ed5ccd74d89f3bc24d4941e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterPrefab: {fileID: 4558184750554608787, guid: 658c2b28260660647b3dec86ca83cf86,
+    type: 3}
 --- !u!1 &117778098
 GameObject:
   m_ObjectHideFlags: 0
@@ -3688,6 +3733,7 @@ Transform:
   - {fileID: 519420032}
   - {fileID: 967501563}
   - {fileID: 554245182}
+  - {fileID: 69497975}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3913,7 +3959,7 @@ PrefabInstance:
     - target: {fileID: 9218702804542671320, guid: 2b46aa7a7cc0f9248a5d8a903edccaf8,
         type: 3}
       propertyPath: m_Name
-      value: Spawn Point
+      value: Start Point
       objectReference: {fileID: 0}
     - target: {fileID: 9218702804542671321, guid: 2b46aa7a7cc0f9248a5d8a903edccaf8,
         type: 3}

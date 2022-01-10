@@ -3,51 +3,58 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterMotor))]
-public class PlayerController : MonoBehaviour
+namespace Assets.Scripts
 {
-    public static bool BlockyIsAlive()
+    [RequireComponent(typeof(CharacterMotor))]
+    public class PlayerController : MonoBehaviour, IKillable
     {
-        PlayerController[] blockys = FindObjectsOfType<PlayerController>();
-        return blockys.Length > 0;
-    }
+        public static bool BlockyIsAlive()
+        {
+            PlayerController[] blockys = FindObjectsOfType<PlayerController>();
+            return blockys.Length > 0;
+        }
 
-    // Events
-    public delegate void BlockysDeadEvent();
-    public static event BlockysDeadEvent OnBlockysDead;
-    public delegate void BlockyWonEvent();
-    public static event BlockyWonEvent OnBlockyWon;
+        // Events
+        public delegate void BlockysDeadEvent();
+        public static event BlockysDeadEvent OnBlockysDead;
+        public delegate void BlockyWonEvent();
+        public static event BlockyWonEvent OnBlockyWon;
 
-    // Components
-    CharacterMotor motor;
+        // Components
+        CharacterMotor motor;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        motor = GetComponent<CharacterMotor>();
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
+            motor = GetComponent<CharacterMotor>();
+        }
 
-    public void OnMove(InputValue val)
-    {
-        motor.SetMoveAxis(val.Get<float>());
-    }
+        // Move when movement axis is given
+        public void OnMove(InputValue val)
+        {
+            motor.SetMoveAxis(val.Get<float>());
+        }
 
-    public void OnJump(InputValue val)
-    {
-        motor.Jump();
-    }
+        // Jump when jump button pressed
+        public void OnJump(InputValue val)
+        {
+            motor.Jump();
+        }
 
-    public void Kill()
-    {
-        Debug.Log("Oh noes I izz kill");
-        Destroy(gameObject);
-        OnBlockysDead();
-    }
+        // Kill condition
+        public void Kill()
+        {
+            Debug.Log("Oh noes I izz kill");
+            Destroy(gameObject);
+            OnBlockysDead();
+        }
 
-    public void Win()
-    {
-        Debug.Log("I deeed it!");
-        Destroy(gameObject);
-        OnBlockyWon();
+        // Win condition
+        public void Win()
+        {
+            Debug.Log("I deeed it!");
+            Destroy(gameObject);
+            OnBlockyWon();
+        }
     }
 }

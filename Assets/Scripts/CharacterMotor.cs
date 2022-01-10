@@ -2,51 +2,85 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class CharacterMotor : MonoBehaviour
+namespace Assets.Scripts
 {
-    // Motion Parameters
-    public float moveVelocity = 20;
-    public float jumpHeight = 20;
-
-    // Physics System
-    Rigidbody2D r2d;
-    float jumpVelocity;
-    float move;
-    float jump;
-
-    // Start is called before the first frame update
-    void Start()
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class CharacterMotor : MonoBehaviour
     {
-        r2d = GetComponent<Rigidbody2D>();
-    }
+        // Motion Parameters
+        public float moveVelocity = 20;
+        public float jumpHeight = 20;
+        public float bounceHeight = 10;
 
-    // Update is called once per physics update
-    void FixedUpdate()
-    {
-        // Move more snappy
-        r2d.velocity = new Vector2(moveVelocity*move, r2d.velocity.y);
-    }
+        // Bound detection parameters
+        public Vector2 boxSize = new Vector2(0.8f, 0.27f);
 
-    public void SetMoveAxis(float val)
-    {
-        move = val;
-    }
+        // Physics System
+        Rigidbody2D r2d;
+        float jumpVelocity;
+        float move;
 
-    public void Jump()
-    {
-        if (IsGrounded())
+        // Start is called before the first frame update
+        void Start()
         {
-            jumpVelocity = Mathf.Sqrt(2*r2d.gravityScale*jumpHeight);
+            r2d = GetComponent<Rigidbody2D>();
+        }
+
+        // Update is called once per physics update
+        void FixedUpdate()
+        {
+            // Move more snappy
+            r2d.velocity = new Vector2(moveVelocity * move, r2d.velocity.y);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            // Enemy hit detection
+            int collisionMask = LayerMask.GetMask("Enemy");
+            RaycastHit2D enemyHit = Physics2D.BoxCast(
+                (Vector2)transform.position + Vector2.down * (transform.localScale.y + boxSize.y) / 1.98f,
+                boxSize, 0, Vector2.down, 1f, collisionMask);
+             
+            // If collided with enemy
+            if (enemyHit.collider != null) 
+            {
+                Debug.Log("It's over enemy! I have the High Ground");
+                enemyHit.collider.GetComponent<IKillable>().Kill();
+                GoUp(bounceHeight);
+            }
+        }
+
+        // Called when drawing gizmos
+        void OnDrawGizmos()
+        {
+            Gizmos.DrawCube((Vector2)transform.position + Vector2.down * (transform.localScale.y + boxSize.y) / 1.98f, boxSize);
+        }
+
+        // Do the up-direction-going physics
+        void GoUp(float height)
+        {
+            jumpVelocity = Mathf.Sqrt(2 * r2d.gravityScale * height);
             r2d.velocity = new Vector2(r2d.velocity.x, jumpVelocity);
         }
-    }
 
-    public bool IsGrounded()
-    {
-        return Physics2D.BoxCast(
-            (Vector2)transform.position + Vector2.down*transform.localScale.y, 
-            new Vector2(0.8f, 0.5f), 
-            transform.rotation.z, Vector2.down, 0.1f);
+        // Set move axis command
+        public void SetMoveAxis(float val)
+        {
+            move = val;
+        }
+        
+        // Jump command
+        public void Jump()
+        {
+            // Ground detection
+            int collisionMask = LayerMask.GetMask("Terrain");
+            bool grounded = Physics2D.BoxCast(
+                (Vector2)transform.position + Vector2.down * (transform.localScale.y + boxSize.y) / 1.98f,
+                boxSize, 0, Vector2.down, 1f, collisionMask);
+            
+            // Jump only if blocky is grounded
+            if (grounded) GoUp(jumpHeight);
+        }
     }
 }
