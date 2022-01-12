@@ -21,6 +21,15 @@ namespace Assets.Scripts
             GameStateController.OnCloseUI += CloseAll;
         }
 
+        private void OnDestroy()
+        {
+            // Unhook from events
+            PlayerController.OnBlockysDead -= OpenDead;
+            PlayerController.OnBlockyWon -= OpenWin;
+            GameStateController.OnPause -= OpenPause;
+            GameStateController.OnCloseUI -= CloseAll;
+        }
+
         public void CloseAll()
         {
             pauseMenu.SetActive(false);

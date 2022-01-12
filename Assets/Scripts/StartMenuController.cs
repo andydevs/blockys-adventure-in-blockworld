@@ -9,7 +9,7 @@ namespace Assets.Scripts
     {
         public void StartGame()
         {
-            SceneManager.LoadScene("DemoScene");
+            SceneManager.LoadScene(1);
         }
 
         public void Quit()
