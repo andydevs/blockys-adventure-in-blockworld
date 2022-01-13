@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
@@ -33,6 +34,16 @@ namespace Assets.Scripts
         {
             Time.timeScale = 0.0f;
             OnPause();
+        }
+
+        public void Next()
+        {
+            Debug.Log("Lez gooooo");
+            int current = SceneManager.GetActiveScene().buildIndex;
+            int next = (current + 1) % SceneManager.sceneCountInBuildSettings;
+            Debug.Log("Current Scene Index: " + current);
+            Debug.Log("Next Scene Index: " + next);
+            SceneManager.LoadScene(next);
         }
 
         public void Resume()

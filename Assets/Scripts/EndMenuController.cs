@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
-    public class StartMenuController : MonoBehaviour
+    public class EndMenuController : MonoBehaviour
     {
-        public void StartGame()
+        public void BackToStart()
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
         }
 
         public void Quit()

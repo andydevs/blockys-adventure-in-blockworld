@@ -17,6 +17,11 @@ namespace Assets.Scripts
             Spawn();
         }
 
+        private void OnDestroy()
+        {
+            GameStateController.OnSpawn -= Spawn;
+        }
+
         public void Spawn()
         {
             if (character == null)
